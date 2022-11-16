@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         percentBTN.setOnClickListener {
-            calcSpace.text = addToInputText("%")
+            // TODO: implement %
         }
 
         exponentBTN.setOnClickListener {
@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         logBTN.setOnClickListener {
-            calcSpace.text = addToInputText("ln")
+            // TODO: implement ln
         }
 
         equalsBTN.setOnClickListener {
