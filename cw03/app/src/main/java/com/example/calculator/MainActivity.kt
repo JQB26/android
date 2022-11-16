@@ -15,6 +15,12 @@ class MainActivity : AppCompatActivity() {
             calcSpace.text = ""
         }
 
+        backSpaceBTN.setOnClickListener {
+            if (calcSpace.text.isNotEmpty()) {
+                calcSpace.text = calcSpace.text.dropLast(1)
+            }
+        }
+
         zeroBTN.setOnClickListener {
             calcSpace.text = addToInputText("0")
         }
@@ -100,9 +106,6 @@ class MainActivity : AppCompatActivity() {
         val expression = ExpressionBuilder(calcSpace.text as String?).build()
         try {
             val result = expression.evaluate()
-            println(calcSpace.text as String?)
-            println(expression)
-            println(result)
             calcSpace.text = result.toString()
         } catch (ex: ArithmeticException) {
             calcSpace.text = "Error"
