@@ -14,7 +14,7 @@
         android:paddingBottom="5dp"
         android:background="@color/dark_blue_bg"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/calcSpace"
         app:layout_constraintVertical_bias="1.0">
 
         <TableRow
@@ -270,19 +270,19 @@
 
     </TableLayout>
 
-    <EditText
-        android:id="@+id/textView"
+    <TextView
+        android:id="@+id/calcSpace"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:autofillHints="false"
+        android:inputType="none"
+        android:textAlignment="textEnd"
+        android:textColor="@color/white"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:autofillHints="false"
-        android:inputType="none"
-        android:textSize="36sp"
-        android:textAlignment="textEnd"
-        android:textColor="@color/white"
         tools:ignore="LabelFor" />
 
     <ImageButton
