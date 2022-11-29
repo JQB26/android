@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 import com.example.shopping.databinding.FragmentProductBinding
-import com.example.shopping.product.ProductsContent
+import com.example.shopping.products.ProductsContent
 
 
 class MyProductRecyclerViewAdapter(

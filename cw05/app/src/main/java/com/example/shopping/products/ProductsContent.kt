@@ -1,4 +1,4 @@
-package com.example.shopping.product
+package com.example.shopping.products
 
 import java.util.ArrayList
 import java.util.HashMap
