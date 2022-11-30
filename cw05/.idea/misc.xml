@@ -5,8 +5,13 @@
       <map>
         <entry key="../../../../../../layout/custom_preview.xml" value="0.1956521739130435" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2246376811594203" />
+        <entry key="app/src/main/res/layout/activity_product_details.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/content_product_details.xml" value="0.20969202898550723" />
+        <entry key="app/src/main/res/layout/fragment_first.xml" value="0.20969202898550723" />
         <entry key="app/src/main/res/layout/fragment_product.xml" value="0.2246376811594203" />
+        <entry key="app/src/main/res/layout/fragment_product_details.xml" value="0.20969202898550723" />
         <entry key="app/src/main/res/layout/fragment_product_list.xml" value="0.2246376811594203" />
+        <entry key="app/src/main/res/layout/fragment_second.xml" value="0.20969202898550723" />
       </map>
     </option>
   </component>

@@ -1,5 +1,6 @@
 package com.example.shopping
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.shopping.products.ProductsContent
 
 
@@ -36,7 +38,13 @@ class ProductFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = MyProductRecyclerViewAdapter(ProductsContent.PRODUCTS)
+                adapter = MyProductRecyclerViewAdapter(ProductsContent.PRODUCTS) { it ->
+                    val details: String = it
+                    Intent(activity, ProductDetailsActivity::class.java).also {
+                        it.putExtra("details", details)
+                        startActivity(it)
+                    }
+                }
             }
         }
         return view

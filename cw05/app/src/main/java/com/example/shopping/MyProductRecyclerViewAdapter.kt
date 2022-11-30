@@ -1,5 +1,7 @@
 package com.example.shopping
 
+import android.content.Context
+import android.content.Intent
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +12,8 @@ import com.example.shopping.products.ProductsContent
 
 
 class MyProductRecyclerViewAdapter(
-    private val values: List<ProductsContent.Product>
+    private val values: List<ProductsContent.Product>,
+    private val clickListener: (String) -> Intent
 ) : RecyclerView.Adapter<MyProductRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,6 +32,10 @@ class MyProductRecyclerViewAdapter(
         val item = values[position]
         holder.price.text = item.price.toString().plus("$")
         holder.name.text = item.name
+
+        holder.itemView.setOnClickListener {
+            clickListener(item.details)
+        }
     }
 
     override fun getItemCount(): Int = values.size

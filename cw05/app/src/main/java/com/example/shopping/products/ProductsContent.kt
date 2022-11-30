@@ -41,9 +41,7 @@ object ProductsContent {
         return builder.toString()
     }
 
-    /**
-     * A placeholder item representing a piece of content.
-     */
+
     data class Product(val id: String, val name: String, val price: Int, val details: String) {
         override fun toString(): String = name
     }
