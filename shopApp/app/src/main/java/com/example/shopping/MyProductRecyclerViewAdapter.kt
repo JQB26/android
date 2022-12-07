@@ -1,11 +1,13 @@
 package com.example.shopping
 
+import android.content.Context
 import android.content.Intent
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import com.example.shopping.cart.CartContent
 
 import com.example.shopping.databinding.FragmentProductBinding
@@ -14,6 +16,7 @@ import com.example.shopping.products.ProductsContent
 
 class MyProductRecyclerViewAdapter(
     private val values: List<ProductsContent.Product>,
+    private val context: Context,
     private val clickListener: (String) -> Intent
 ) : RecyclerView.Adapter<MyProductRecyclerViewAdapter.ViewHolder>() {
 
@@ -43,8 +46,8 @@ class MyProductRecyclerViewAdapter(
         holder.addToCart.setOnClickListener {
             cart.addProductToCart(item.id)
 
-            // TODO: remove println when cart activity/view is added
-            println(cart.CART.map{ "${it.key}: ${it.value}" }.joinToString(", "))
+            val toast = Toast.makeText(context, "${item.name}\nadded to the cart", Toast.LENGTH_SHORT)
+            toast.show()
         }
     }
 

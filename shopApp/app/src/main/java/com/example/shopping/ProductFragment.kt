@@ -37,13 +37,16 @@ class ProductFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = MyProductRecyclerViewAdapter(ProductsContent.PRODUCTS) { it ->
-                    val details: String = it
-                    Intent(activity, ProductDetailsActivity::class.java).also {
-                        it.putExtra("details", details)
-                        startActivity(it)
+                adapter =
+                    activity?.let { it ->
+                        MyProductRecyclerViewAdapter(ProductsContent.PRODUCTS, it) { it ->
+                            val details: String = it
+                            Intent(activity, ProductDetailsActivity::class.java).also {
+                                it.putExtra("details", details)
+                                startActivity(it)
+                            }
+                        }
                     }
-                }
             }
         }
         return view
