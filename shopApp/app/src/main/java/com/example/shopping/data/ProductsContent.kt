@@ -1,6 +1,7 @@
 package com.example.shopping.data
 
 import android.os.AsyncTask
+import com.example.shopping.FetchDataTask
 import com.example.shopping.models.ProductModel
 import com.google.gson.Gson
 import java.net.HttpURLConnection
@@ -13,23 +14,7 @@ object ProductsContent {
     private val PRODUCTS_MAP: MutableMap<String, ProductModel> = HashMap()
 
     private val gson = Gson()
-
-    private val categories = CategoriesContent
-
-    class FetchDataTask : AsyncTask<URL, Void, String>() {
-        override fun doInBackground(vararg params: URL): String {
-            val url = params[0]
-            val connection = url.openConnection() as HttpURLConnection
-            connection.requestMethod = "GET"
-            val inputStream = connection.inputStream
-            return inputStream.bufferedReader().readText()
-        }
-
-        override fun onPostExecute(result: String) {
-            // Update the UI with the fetched data
-        }
-    }
-
+    
     private val url = URL("http://10.0.2.2:80/products")
 
     private val task = FetchDataTask()

@@ -1,6 +1,11 @@
 package com.example.shopping.data
 
+import android.os.AsyncTask
+import com.example.shopping.FetchDataTask
 import com.example.shopping.models.CategoryModel
+import com.example.shopping.models.ProductModel
+import com.google.gson.Gson
+import java.net.URL
 import java.util.ArrayList
 import java.util.HashMap
 
@@ -8,19 +13,20 @@ object CategoriesContent {
     val CATEGORIES: MutableList<CategoryModel> = ArrayList()
     val CATEGORIES_MAP: MutableMap<String, CategoryModel> = HashMap()
 
+    private val gson = Gson()
+
+    private val url = URL("http://10.0.2.2:80/categories")
+
+    private val task = FetchDataTask()
+    private val response: AsyncTask<URL, Void, String> = task.execute(url)
+
     init {
-        addCategory(createCategory(
-            "1",
-            "Boardgames",
-            listOf("Social", "Family", "Friends"),
-            "Board games are a type of tabletop game that involves playing with physical pieces on a flat surface or board. Board games typically have a set of rules and often involve strategy, chance, or both. They can be played by two or more players, and often involve players taking turns to move their pieces or roll dice to determine the outcome of their actions."
-        ))
-        addCategory(createCategory(
-            "2",
-            "Computer Games",
-            listOf("PC", "Video"),
-            "Computer games, also known as video games, are a type of digital game that is played on a computer or other electronic device. Computer games often involve interacting with a graphical user interface (GUI) or control system to manipulate virtual objects or characters in a simulated environment. Computer games can be played by one or more players, either locally or over the internet, and often involve a combination of skill, strategy, and chance. Computer games can be categorized into various genres, such as action, adventure, strategy, puzzle, and simulation, and are often developed using specialized software and game engines."
-        ))
+        val data = response.get()
+        val categories: List<CategoryModel> = gson.fromJson(data, Array<CategoryModel>::class.java).toList()
+
+        categories.forEach { category ->
+            addCategory(category)
+        }
     }
 
     private fun addCategory(category: CategoryModel) {
