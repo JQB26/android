@@ -34,12 +34,12 @@ object ProductsContent {
         PRODUCTS_MAP[product.id] = product
     }
 
-    private fun createProduct(
-        id: String, name: String, price: Double, details: String
-    ): ProductModel {
-        val processedDetails: String = makeDetails(name, details)
-        return ProductModel(id, name, price, processedDetails)
-    }
+//    private fun createProduct(
+//        id: String, name: String, price: Double, details: String
+//    ): ProductModel {
+//        val processedDetails: String = makeDetails(name, details)
+//        return ProductModel(id, name, price, processedDetails)
+//    }
 
     private fun makeDetails(name: String, detailsText: String): String {
         val builder = StringBuilder()
