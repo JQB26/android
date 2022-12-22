@@ -34,9 +34,9 @@ object CategoriesContent {
         CATEGORIES_MAP[category.id] = category
     }
 
-    private fun createCategory(
-        id: String, name: String, keywords: List<String>, description: String
-    ): CategoryModel {
-        return CategoryModel(id, name, keywords, description)
-    }
+//    private fun createCategory(
+//        id: String, name: String, keywords: List<String>, description: String
+//    ): CategoryModel {
+//        return CategoryModel(id, name, keywords, description)
+//    }
 }

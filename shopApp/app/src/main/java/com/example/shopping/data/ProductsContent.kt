@@ -25,7 +25,7 @@ object ProductsContent {
         val products: List<ProductModel> = gson.fromJson(data, Array<ProductModel>::class.java).toList()
 
         products.forEach { product ->
-            addProduct(product)
+             addProduct(product)
         }
     }
 
