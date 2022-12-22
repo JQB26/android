@@ -14,7 +14,7 @@ object ProductsContent {
     private val PRODUCTS_MAP: MutableMap<String, ProductModel> = HashMap()
 
     private val gson = Gson()
-    
+
     private val url = URL("http://10.0.2.2:80/products")
 
     private val task = FetchDataTask()
