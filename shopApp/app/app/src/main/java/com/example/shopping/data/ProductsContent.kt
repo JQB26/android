@@ -60,7 +60,7 @@ object ProductsContent {
     }
 
     private fun createProduct(
-        id: String, name: String, price: Double, category: CategoryModel, details: String
+        id: String, name: String, price: Float, category: CategoryModel, details: String
     ): ProductModel {
         val processedDetails: String = makeDetails(name, details)
         return ProductModel(id, name, price, category, processedDetails)

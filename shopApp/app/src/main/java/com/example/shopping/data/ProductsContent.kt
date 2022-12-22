@@ -1,7 +1,11 @@
 package com.example.shopping.data
 
-import com.example.shopping.models.CategoryModel
+import android.os.AsyncTask
+import com.example.shopping.FetchDataTask
 import com.example.shopping.models.ProductModel
+import com.google.gson.Gson
+import java.net.HttpURLConnection
+import java.net.URL
 import java.util.ArrayList
 import java.util.HashMap
 
@@ -9,48 +13,19 @@ object ProductsContent {
     val PRODUCTS: MutableList<ProductModel> = ArrayList()
     private val PRODUCTS_MAP: MutableMap<String, ProductModel> = HashMap()
 
-    private val categories = CategoriesContent
+    private val gson = Gson()
+
+    private val url = URL("http://10.0.2.2:80/products")
+
+    private val task = FetchDataTask()
+    private val response: AsyncTask<URL, Void, String> = task.execute(url)
 
     init {
-        // add init products
-        categories.CATEGORIES_MAP["1"]?.let {
-            createProduct(
-                "1",
-                "Brass Birmingham",
-                80.0,
-                it,
-                "Best board game ever"
-            )
-        }?.let {
-            addProduct(
-                it
-            )
-        }
-        categories.CATEGORIES_MAP["1"]?.let {
-            createProduct(
-                "2",
-                "Chess",
-                40.0,
-                it,
-                "Most iconic game ever"
-            )
-        }?.let {
-            addProduct(
-                it
-            )
-        }
-        categories.CATEGORIES_MAP["2"]?.let {
-            createProduct(
-                "3",
-                "Civilization 6",
-                20.60,
-                it,
-                "Best strategic video game"
-            )
-        }?.let {
-            addProduct(
-                it
-            )
+        val data = response.get()
+        val products: List<ProductModel> = gson.fromJson(data, Array<ProductModel>::class.java).toList()
+
+        products.forEach { product ->
+            addProduct(product)
         }
     }
 
@@ -60,10 +35,10 @@ object ProductsContent {
     }
 
     private fun createProduct(
-        id: String, name: String, price: Double, category: CategoryModel, details: String
+        id: String, name: String, price: Double, details: String
     ): ProductModel {
         val processedDetails: String = makeDetails(name, details)
-        return ProductModel(id, name, price, category, processedDetails)
+        return ProductModel(id, name, price, processedDetails)
     }
 
     private fun makeDetails(name: String, detailsText: String): String {
