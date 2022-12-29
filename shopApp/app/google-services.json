@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "878839784721",
+    "project_id": "android-studies",
+    "storage_bucket": "android-studies.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:878839784721:android:115a82984e714a81df98b0",
+        "android_client_info": {
+          "package_name": "com.example.shopping"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "878839784721-is169tc2esgravj82dtq5bg1nqhpcb81.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoC9_E4mAEtMhjgOv1hN2R_udKG18vOxg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "878839784721-is169tc2esgravj82dtq5bg1nqhpcb81.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
