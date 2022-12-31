@@ -11,7 +11,6 @@ import android.widget.Toast
 import com.example.shopping.data.CartContent
 
 import com.example.shopping.databinding.FragmentProductBinding
-import com.example.shopping.data.ProductsContent
 import com.example.shopping.models.ProductModel
 
 
@@ -50,6 +49,19 @@ class MyProductRecyclerViewAdapter(
             val toast = Toast.makeText(context, "${item.name}\nadded to the cart", Toast.LENGTH_SHORT)
             toast.show()
         }
+
+        holder.removeFromCart.setOnClickListener {
+            if (cart.CART_MAP[item.id] != null) {
+                cart.removeProductFromCart(item.id)
+
+                val toast = Toast.makeText(context, "${item.name}\nremoved from the cart", Toast.LENGTH_SHORT)
+                toast.show()
+            } else {
+                val toast = Toast.makeText(context, "No such item in the cart", Toast.LENGTH_SHORT)
+                toast.show()
+            }
+
+        }
     }
 
     override fun getItemCount(): Int = values.size
@@ -59,6 +71,8 @@ class MyProductRecyclerViewAdapter(
         val price: TextView = binding.productPrice
         val name: TextView = binding.name
         val addToCart: Button = binding.addToCart
+        val removeFromCart: Button = binding.removeFromCart
+
 
         override fun toString(): String {
             return super.toString() + " '" + name.text + "'"

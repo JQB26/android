@@ -51,12 +51,12 @@ class MyCartRecyclerViewAdapter(
             }
         }
 
-        holder.removeFromCart.setOnClickListener {
-            cart.removeProductFromCart(item.id)
-
-            val toast = Toast.makeText(context, "${product?.name}\nremoved from the cart", Toast.LENGTH_SHORT)
-            toast.show()
-        }
+//        holder.removeFromCart.setOnClickListener {
+//            cart.removeProductFromCart(item.id)
+//
+//            val toast = Toast.makeText(context, "${product?.name}\nremoved from the cart", Toast.LENGTH_SHORT)
+//            toast.show()
+//        }
     }
 
     override fun getItemCount(): Int = values.size
@@ -66,7 +66,7 @@ class MyCartRecyclerViewAdapter(
         val name: TextView = binding.name
         val quantity: TextView = binding.quantity
         val productPrice: TextView = binding.productPrice
-        val removeFromCart: Button = binding.removeFromCart
+//        val removeFromCart: Button = binding.removeFromCart
 
         override fun toString(): String {
             return super.toString() + " '" + name.text + "'"
