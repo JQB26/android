@@ -9,12 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.shopping.adapters.MyProductRecyclerViewAdapter
 import com.example.shopping.ProductDetailsActivity
 import com.example.shopping.R
 import com.example.shopping.adapters.MyCartRecyclerViewAdapter
 import com.example.shopping.data.CartContent
-import com.example.shopping.data.ProductsContent
 
 
 class CartFragment : Fragment() {
@@ -47,6 +45,7 @@ class CartFragment : Fragment() {
                         MyCartRecyclerViewAdapter(CartContent.CART, it) { it ->
                             val details: String = it
                             Intent(activity, ProductDetailsActivity::class.java).also {
+                                it.putExtra("destination", "CartFragment")
                                 it.putExtra("details", details)
                                 startActivity(it)
                             }

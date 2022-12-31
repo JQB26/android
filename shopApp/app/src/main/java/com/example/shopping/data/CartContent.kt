@@ -9,11 +9,11 @@ object CartContent {
     val CART: MutableList<CartItemModel> = ArrayList()
     val CART_MAP: MutableMap<String, CartItemModel> = HashMap()
 
-    init {
-        addProductToCart("1")
-        addProductToCart("1")
-        addProductToCart("2")
-    }
+//    init {
+//        addProductToCart("1")
+//        addProductToCart("1")
+//        addProductToCart("2")
+//    }
 
     fun addProductToCart(id: String) {
         val product: ProductModel? = ProductsContent.PRODUCTS_MAP[id]
@@ -53,9 +53,5 @@ object CartContent {
                 }
             }
         }
-        for (item in CART) {
-            print("KROWA, id:" + item.id + ", quantity:" + item.quantity)
-        }
-        println()
     }
 }

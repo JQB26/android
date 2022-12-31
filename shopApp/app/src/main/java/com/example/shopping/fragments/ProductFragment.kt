@@ -45,6 +45,7 @@ class ProductFragment : Fragment() {
                         MyProductRecyclerViewAdapter(ProductsContent.PRODUCTS, it) { it ->
                             val details: String = it
                             Intent(activity, ProductDetailsActivity::class.java).also {
+                                it.putExtra("destination", "ProductFragment")
                                 it.putExtra("details", details)
                                 startActivity(it)
                             }
@@ -62,7 +63,7 @@ class ProductFragment : Fragment() {
 
         // TODO: Customize parameter initialization
         @JvmStatic
-        fun newInstance(columnCount: Int) =
+        fun newInstance() =
             ProductFragment().apply {
                 arguments = Bundle().apply {
                     putInt(ARG_COLUMN_COUNT, columnCount)
