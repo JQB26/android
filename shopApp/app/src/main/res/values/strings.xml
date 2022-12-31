@@ -3,4 +3,5 @@
 
     <string name="back">back</string>
     <string name="add">+</string>
+    <string name="subtract">-</string>
 </resources>

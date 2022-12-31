@@ -12,10 +12,12 @@ import android.view.ViewGroup
 import com.example.shopping.adapters.MyProductRecyclerViewAdapter
 import com.example.shopping.ProductDetailsActivity
 import com.example.shopping.R
+import com.example.shopping.adapters.MyCartRecyclerViewAdapter
+import com.example.shopping.data.CartContent
 import com.example.shopping.data.ProductsContent
 
 
-class ProductFragment : Fragment() {
+class CartFragment : Fragment() {
 
     private var columnCount = 1
 
@@ -31,7 +33,7 @@ class ProductFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_product_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_cart_item_list, container, false)
 
         // Set the adapter
         if (view is RecyclerView) {
@@ -42,7 +44,7 @@ class ProductFragment : Fragment() {
                 }
                 adapter =
                     activity?.let { it ->
-                        MyProductRecyclerViewAdapter(ProductsContent.PRODUCTS, it) { it ->
+                        MyCartRecyclerViewAdapter(CartContent.CART, it) { it ->
                             val details: String = it
                             Intent(activity, ProductDetailsActivity::class.java).also {
                                 it.putExtra("details", details)
@@ -63,7 +65,7 @@ class ProductFragment : Fragment() {
         // TODO: Customize parameter initialization
         @JvmStatic
         fun newInstance(columnCount: Int) =
-            ProductFragment().apply {
+            CartFragment().apply {
                 arguments = Bundle().apply {
                     putInt(ARG_COLUMN_COUNT, columnCount)
                 }

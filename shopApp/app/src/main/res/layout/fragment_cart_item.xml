@@ -15,6 +15,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin"
+        android:textAppearance="?attr/textAppearanceListItem"
+        app:layout_constraintEnd_toStartOf="@+id/remove_from_cart"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/product_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,10 +33,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/add_to_cart"
+        android:id="@+id/remove_from_cart"
         android:layout_width="40dp"
         android:layout_height="match_parent"
-        android:text="@string/add"
+        android:text="@string/subtract"
+        android:backgroundTint="@color/red"
+        android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

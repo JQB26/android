@@ -10,23 +10,24 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.shopping.data.CartContent
 
-import com.example.shopping.databinding.FragmentProductBinding
+import com.example.shopping.databinding.FragmentCartItemBinding
 import com.example.shopping.data.ProductsContent
+import com.example.shopping.models.CartItemModel
 import com.example.shopping.models.ProductModel
 
 
-class MyProductRecyclerViewAdapter(
-    private val values: List<ProductModel>,
+class MyCartRecyclerViewAdapter(
+    private val values: List<CartItemModel>,
     private val context: Context,
     private val clickListener: (String) -> Intent
-) : RecyclerView.Adapter<MyProductRecyclerViewAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<MyCartRecyclerViewAdapter.ViewHolder>() {
 
     private val cart: CartContent = CartContent
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         return ViewHolder(
-            FragmentProductBinding.inflate(
+            FragmentCartItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -37,28 +38,35 @@ class MyProductRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-        holder.price.text = item.price.toString().plus("$")
-        holder.name.text = item.name
+        val product: ProductModel? = ProductsContent.PRODUCTS_MAP[item.id]
+        if (product != null) {
+            holder.name.text = product.name
+            holder.productPrice.text = product.price.toString().plus("$")
+        }
+        holder.quantity.text = item.quantity.toString()
 
         holder.itemView.setOnClickListener {
-            clickListener(item.details)
+            if (product != null) {
+                clickListener(product.details)
+            }
         }
 
-        holder.addToCart.setOnClickListener {
-            cart.addProductToCart(item.id)
+        holder.removeFromCart.setOnClickListener {
+            cart.removeProductFromCart(item.id)
 
-            val toast = Toast.makeText(context, "${item.name}\nadded to the cart", Toast.LENGTH_SHORT)
+            val toast = Toast.makeText(context, "${product?.name}\nremoved from the cart", Toast.LENGTH_SHORT)
             toast.show()
         }
     }
 
     override fun getItemCount(): Int = values.size
 
-    inner class ViewHolder(binding: FragmentProductBinding) :
+    inner class ViewHolder(binding: FragmentCartItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        val price: TextView = binding.productPrice
         val name: TextView = binding.name
-        val addToCart: Button = binding.addToCart
+        val quantity: TextView = binding.quantity
+        val productPrice: TextView = binding.productPrice
+        val removeFromCart: Button = binding.removeFromCart
 
         override fun toString(): String {
             return super.toString() + " '" + name.text + "'"
