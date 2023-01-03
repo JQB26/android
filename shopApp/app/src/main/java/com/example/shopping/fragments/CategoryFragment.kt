@@ -33,8 +33,6 @@ class CategoryFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_category_list, container, false)
 
-        println("KROWA2 ${CategoriesContent.CATEGORIES}")
-
         // Set the adapter
         if (view is RecyclerView) {
             with(view) {

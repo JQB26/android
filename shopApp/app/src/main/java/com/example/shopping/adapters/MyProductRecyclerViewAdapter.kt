@@ -39,8 +39,6 @@ class MyProductRecyclerViewAdapter(
         holder.price.text = item.price.toString().plus("$")
         holder.name.text = item.name
 
-        println("KROWA $item")
-
         holder.itemView.setOnClickListener {
             clickListener(item.details)
         }
