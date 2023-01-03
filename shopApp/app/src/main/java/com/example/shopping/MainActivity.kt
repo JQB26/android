@@ -2,6 +2,7 @@ package com.example.shopping
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.shopping.databinding.ActivityMainBinding
 import com.example.shopping.fragments.CartFragment
@@ -33,6 +34,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         val user = intent.getStringExtra("user")
+
+        if (user != null) {
+            val textWelcome: TextView = findViewById(R.id.textWelcome)
+            val userName = user.split(" ")[0]
+            textWelcome.text = textWelcome.text.toString().plus(" $userName")
+        }
     }
 
     private fun replaceFragment(fragment: Fragment) {
