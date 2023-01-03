@@ -10,4 +10,10 @@
     <string name="home">Home</string>
     <string name="category">Categories</string>
     <string name="pay">pay</string>
+    <string name="accept_the_payment">Accept the Payment</string>
+    <string name="card_expiry_date">Card Expiry Date</string>
+    <string name="card_number">CardNumber</string>
+    <string name="cvv">CVV</string>
+    <string name="surname">Surname</string>
+    <string name="name">Name</string>
 </resources>

@@ -9,11 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.shopping.PaymentActivity
 import com.example.shopping.ProductDetailsActivity
 import com.example.shopping.R
 import com.example.shopping.adapters.MyCartRecyclerViewAdapter
 import com.example.shopping.data.CartContent
-import kotlinx.android.synthetic.main.fragment_cart.view.list
+import kotlinx.android.synthetic.main.fragment_cart.view.*
 
 
 class CartFragment : Fragment() {
@@ -54,6 +55,13 @@ class CartFragment : Fragment() {
                     }
             }
         }
+
+        view.payButton.setOnClickListener {
+            Intent(activity, PaymentActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
         return view
     }
 
