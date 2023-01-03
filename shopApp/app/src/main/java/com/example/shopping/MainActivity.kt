@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.example.shopping.data.CategoriesContent
 import com.example.shopping.databinding.ActivityMainBinding
 import com.example.shopping.fragments.CartFragment
 import com.example.shopping.fragments.CategoryFragment

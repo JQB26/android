@@ -13,6 +13,7 @@ import com.example.shopping.ProductDetailsActivity
 import com.example.shopping.R
 import com.example.shopping.adapters.MyCartRecyclerViewAdapter
 import com.example.shopping.data.CartContent
+import kotlinx.android.synthetic.main.fragment_cart.view.list
 
 
 class CartFragment : Fragment() {
@@ -31,11 +32,11 @@ class CartFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_cart_item_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_cart, container, false)
 
         // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
+        if (view.list is RecyclerView) {
+            with(view.list) {
                 layoutManager = when {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)

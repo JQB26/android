@@ -9,4 +9,5 @@
     <string name="cart">Cart</string>
     <string name="home">Home</string>
     <string name="category">Categories</string>
+    <string name="pay">pay</string>
 </resources>
