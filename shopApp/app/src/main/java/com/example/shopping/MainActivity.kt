@@ -1,11 +1,14 @@
 package com.example.shopping
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.shopping.data.CategoriesContent
 import com.example.shopping.databinding.ActivityMainBinding
 import com.example.shopping.fragments.CartFragment
+import com.example.shopping.fragments.CategoryFragment
 import com.example.shopping.fragments.ProductFragment
 
 class MainActivity : AppCompatActivity() {
@@ -17,9 +20,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        when (val destination = intent.getStringExtra("destination"))
+        when (intent.getStringExtra("destination"))
         {
             "ProductFragment" -> replaceFragment(ProductFragment())
+            "CategoryFragment" -> replaceFragment(CategoryFragment())
             "CartFragment" -> replaceFragment(CartFragment())
             else -> replaceFragment(ProductFragment())
         }
@@ -27,19 +31,20 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> replaceFragment(ProductFragment())
+                R.id.category -> replaceFragment(CategoryFragment())
                 R.id.cart -> replaceFragment(CartFragment())
                 else -> {}
             }
             true
         }
 
-        val user = intent.getStringExtra("user")
+        val sharedPreferences = getSharedPreferences("prefs", Context.MODE_PRIVATE)
 
-        if (user != null) {
-            val textWelcome: TextView = findViewById(R.id.textWelcome)
-            val userName = user.split(" ")[0]
-            textWelcome.text = textWelcome.text.toString().plus(" $userName")
-        }
+        val userName = sharedPreferences.getString("userName", "")
+
+        val textWelcome: TextView = findViewById(R.id.textWelcome)
+        val firstName = userName?.split(" ")?.get(0)
+        textWelcome.text = textWelcome.text.toString().plus(" $firstName")
     }
 
     private fun replaceFragment(fragment: Fragment) {
