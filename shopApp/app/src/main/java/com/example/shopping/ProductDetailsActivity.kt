@@ -10,10 +10,12 @@ class ProductDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_details)
 
+        val destination = intent.getStringExtra("destination")
         product_details.text = intent.getStringExtra("details")
 
         backButton.setOnClickListener {
             Intent(this, MainActivity::class.java).also {
+                it.putExtra("destination", destination)
                 startActivity(it)
             }
         }

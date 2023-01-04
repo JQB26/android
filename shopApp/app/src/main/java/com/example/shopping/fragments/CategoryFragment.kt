@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.shopping.adapters.MyProductRecyclerViewAdapter
 import com.example.shopping.ProductDetailsActivity
 import com.example.shopping.R
-import com.example.shopping.data.ProductsContent
+import com.example.shopping.adapters.MyCategoryRecyclerViewAdapter
+import com.example.shopping.data.CategoriesContent
 
 
-class ProductFragment : Fragment() {
+class CategoryFragment : Fragment() {
 
     private var columnCount = 1
 
@@ -31,7 +31,7 @@ class ProductFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_product_list, container, false)
+        val view = inflater.inflate(R.layout.fragment_category_list, container, false)
 
         // Set the adapter
         if (view is RecyclerView) {
@@ -41,11 +41,11 @@ class ProductFragment : Fragment() {
                     else -> GridLayoutManager(context, columnCount)
                 }
                 adapter =
-                    activity?.let { it ->
-                        MyProductRecyclerViewAdapter(ProductsContent.PRODUCTS, it) { it ->
+                    activity?.let {
+                        MyCategoryRecyclerViewAdapter(CategoriesContent.CATEGORIES) { it ->
                             val details: String = it
                             Intent(activity, ProductDetailsActivity::class.java).also {
-                                it.putExtra("destination", "ProductFragment")
+                                it.putExtra("destination", "CategoryFragment")
                                 it.putExtra("details", details)
                                 startActivity(it)
                             }
@@ -64,7 +64,7 @@ class ProductFragment : Fragment() {
         // TODO: Customize parameter initialization
         @JvmStatic
         fun newInstance() =
-            ProductFragment().apply {
+            CategoryFragment().apply {
                 arguments = Bundle().apply {
                     putInt(ARG_COLUMN_COUNT, columnCount)
                 }

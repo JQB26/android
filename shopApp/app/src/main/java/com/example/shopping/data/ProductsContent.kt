@@ -4,14 +4,13 @@ import android.os.AsyncTask
 import com.example.shopping.FetchDataTask
 import com.example.shopping.models.ProductModel
 import com.google.gson.Gson
-import java.net.HttpURLConnection
 import java.net.URL
 import java.util.ArrayList
 import java.util.HashMap
 
 object ProductsContent {
     val PRODUCTS: MutableList<ProductModel> = ArrayList()
-    private val PRODUCTS_MAP: MutableMap<String, ProductModel> = HashMap()
+    val PRODUCTS_MAP: MutableMap<String, ProductModel> = HashMap()
 
     private val gson = Gson()
 

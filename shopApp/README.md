@@ -1,3 +1,11 @@
+## Shopping android application written in Kotlin
+
+
+
+
+
+
+
 3.0 stworzyć listę produktów z podstroną opisu produktu (intencje)
 
 3.5 opcja dodania produktu do koszyka

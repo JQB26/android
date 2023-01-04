@@ -5,5 +5,5 @@ data class ProductModel(
     val name: String,
     val price: Double,
     val details: String,
-    val category: CategoryModel
+    val category_id: Int
 )
