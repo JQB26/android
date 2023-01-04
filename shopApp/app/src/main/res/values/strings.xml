@@ -16,4 +16,5 @@
     <string name="cvv">CVV</string>
     <string name="surname">Surname</string>
     <string name="name">Name</string>
+    <string name="total_price_is">Total price is:</string>
 </resources>

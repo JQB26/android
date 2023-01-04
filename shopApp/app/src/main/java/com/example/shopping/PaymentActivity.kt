@@ -5,24 +5,30 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.view.isEmpty
 import com.example.shopping.data.CartContent
 import kotlinx.android.synthetic.main.activity_payment.*
+import java.net.HttpURLConnection
+import java.net.URL
 
 class PaymentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment)
 
-        val totalPrice = calculateTotalPrice()
+        val totalPrice = String.format("%.2f", calculateTotalPrice())
         val totalPriceView: TextView = findViewById(R.id.totalPrice)
-        totalPriceView.text = totalPrice.toString().plus("$")
+        totalPriceView.text = totalPrice.plus("$")
 
         acceptPayment.setOnClickListener {
             if (allFieldsAreFilled()) {
-                // TODO: send payment request
+
+                sendPaymentData(URL("http://10.0.2.2:80/payment"))
+
                 val toast = Toast.makeText(this, "Payment was sent", Toast.LENGTH_SHORT)
                 toast.show()
+
+                CartContent.CART.clear()
+                CartContent.CART_MAP.clear()
 
                 Intent(this, MainActivity::class.java).also {
                     startActivity(it)
@@ -35,23 +41,65 @@ class PaymentActivity : AppCompatActivity() {
     }
 
     private fun calculateTotalPrice(): Double {
-        // TODO: check if calculates correctly
         var totalPrice = 0.0
         CartContent.CART.forEach { cartItemModel ->
             val sum: Double = cartItemModel.unitPrice * cartItemModel.quantity
             totalPrice += sum
         }
-        totalPrice -= totalPrice.mod(0.01)
         return totalPrice
     }
 
     private fun allFieldsAreFilled(): Boolean {
-        // TODO: fix, not working
-        if (textInputName.isEmpty()) {
-            textInputName.boxStrokeErrorColor
-            return false
+        val requiredFieldList = listOf(
+            textInputName,
+            textInputSurname,
+            textInputCardNumber,
+            textInputCVV,
+        )
+
+        var requiredFieldsStatus = true
+
+        for (requiredField in requiredFieldList) {
+            if (requiredField.editText!!.text.isEmpty()) {
+                requiredField.error = "Field is required"
+                requiredFieldsStatus = false
+            } else {
+                textInputName.error = null
+            }
         }
 
-        return true
+        if (editTextExpiryDate.text.isEmpty()) {
+            editTextExpiryDate.error = "Field is required"
+            requiredFieldsStatus = false
+        } else {
+            textInputName.error = null
+        }
+
+        return requiredFieldsStatus
+    }
+
+    private fun sendPaymentData(url: URL) {
+        val connection = url.openConnection() as HttpURLConnection
+        connection.requestMethod = "POST"
+        connection.setRequestProperty("Content-Type", "application/json")
+        connection.doOutput = true
+
+        val json = """
+        {
+            "Cart": "${CartContent.CART}",
+            "Name": "${textInputName.editText!!.text}",
+            "Surname": "${textInputSurname.editText!!.text}",
+            "CardNumber": "${textInputCardNumber.editText!!.text}",
+            "CVV": "${textInputCVV.editText!!.text}",
+            "CardExpiryDate": "${editTextExpiryDate.text}",
+        }
+        """
+
+        val outputStream = connection.outputStream
+        outputStream.write(json.toByteArray())
+        outputStream.close()
+
+        val responseCode = connection.responseCode
+        val responseMessage = connection.responseMessage
     }
 }
