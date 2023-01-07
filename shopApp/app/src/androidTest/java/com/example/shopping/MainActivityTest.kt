@@ -10,6 +10,7 @@ import com.example.shopping.fragments.CartFragment
 import com.example.shopping.fragments.CategoryFragment
 import com.example.shopping.fragments.ProductFragment
 import junit.framework.Assert.assertEquals
+import org.hamcrest.CoreMatchers.*
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -71,6 +72,28 @@ class MainActivityTest {
             onView(withId(R.id.home)).check(matches(isDisplayed()))
             onView(withId(R.id.category)).check(matches(isDisplayed()))
             onView(withId(R.id.cart)).check(matches(isDisplayed()))
+        }
+    }
+
+    // TODO: mock backend for the data fetching
+    @Test
+    fun testProductFragment() {
+        ActivityScenario.launch<MainActivity>(
+            MainActivity.newIntent(getApplicationContext(), "ProductFragment")
+        ).use {
+            onView(withText("Brass birmingham")).check(matches(isDisplayed()))
+            onView(withText("chess")).check(matches(isDisplayed()))
+            onView(withText("Civilization 6")).check(matches(isDisplayed()))
+        }
+    }
+
+    @Test
+    fun testCategoryFragment() {
+        ActivityScenario.launch<MainActivity>(
+            MainActivity.newIntent(getApplicationContext(), "CategoryFragment")
+        ).use {
+            onView(withText("Boardgames")).check(matches(isDisplayed()))
+            onView(withText("Video Games")).check(matches(isDisplayed()))
         }
     }
 
