@@ -1,6 +1,7 @@
 package com.example.shopping
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
@@ -52,4 +53,13 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.replace(R.id.frame_layout, fragment)
         fragmentTransaction.commit()
     }
+
+    companion object {
+        fun newIntent(context: Context, destination: String): Intent {
+            val intent = Intent(context, MainActivity::class.java)
+            intent.putExtra("destination", destination)
+            return intent
+        }
+    }
 }
+
