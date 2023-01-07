@@ -36,8 +36,8 @@ class CartFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_cart, container, false)
 
         // Set the adapter
-        if (view.list is RecyclerView) {
-            with(view.list) {
+        if (view.cart_list is RecyclerView) {
+            with(view.cart_list) {
                 layoutManager = when {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)

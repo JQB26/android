@@ -69,7 +69,7 @@ class MainActivityTest {
         ActivityScenario.launch<MainActivity>(
             MainActivity.newIntent(getApplicationContext(), "ProductFragment")
         ).use {
-            onView(withId(R.id.list)).check(matches(isDisplayed()))
+            onView(withId(R.id.product_list)).check(matches(isDisplayed()))
             onView(withId(R.id.home)).check(matches(isDisplayed()))
             onView(withId(R.id.category)).check(matches(isDisplayed()))
             onView(withId(R.id.cart)).check(matches(isDisplayed()))
@@ -81,7 +81,7 @@ class MainActivityTest {
         ActivityScenario.launch<MainActivity>(
             MainActivity.newIntent(getApplicationContext(), "CategoryFragment")
         ).use {
-            onView(withId(R.id.list)).check(matches(isDisplayed()))
+            onView(withId(R.id.category_list)).check(matches(isDisplayed()))
             onView(withId(R.id.home)).check(matches(isDisplayed()))
             onView(withId(R.id.category)).check(matches(isDisplayed()))
             onView(withId(R.id.cart)).check(matches(isDisplayed()))
@@ -93,7 +93,7 @@ class MainActivityTest {
         ActivityScenario.launch<MainActivity>(
             MainActivity.newIntent(getApplicationContext(), "CartFragment")
         ).use {
-            onView(withId(R.id.list)).check(matches(isDisplayed()))
+            onView(withId(R.id.cart_list)).check(matches(isDisplayed()))
             onView(withId(R.id.payButton)).check(matches(isDisplayed()))
             onView(withId(R.id.home)).check(matches(isDisplayed()))
             onView(withId(R.id.category)).check(matches(isDisplayed()))

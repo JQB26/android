@@ -1,5 +1,6 @@
 package com.example.shopping
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -18,6 +19,14 @@ class ProductDetailsActivity : AppCompatActivity() {
                 it.putExtra("destination", destination)
                 startActivity(it)
             }
+        }
+    }
+
+    companion object {
+        fun newIntent(context: Context, destination: String): Intent {
+            val intent = Intent(context, ProductDetailsActivity::class.java)
+            intent.putExtra("destination", destination)
+            return intent
         }
     }
 }
